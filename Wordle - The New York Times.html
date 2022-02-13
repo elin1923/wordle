@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.nytimes.com/games/wordle/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Wordle - The New York Times</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-apple-touch-icon.png?v=v2202021345">
+    <link rel="mask-icon" color="#000000" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-safari-pinned-tab.svg?v=v2202021345">
+    <meta name="apple-mobile-web-app-title" content="NYT Puzzles - Wordle">
+    <meta name="application-name" content="NYT Puzzles - Wordle">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#000000">
+    <meta name="sourceApp" content="games-crosswords">
+    <meta property="description" content="Guess the hidden word in 6 tries. A new puzzle is available each day.">
+    <meta property="og:title" content="Wordle - A daily word game">
+    <meta property="og:url" content="https://www.nytimes.com/games/wordle">
+    <meta property="og:description" content="Guess the hidden word in 6 tries. A new puzzle is available each day.">
+    <meta property="og:image" content="./images/NYT-Wordle-Meta.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="nytimes.com">
+    <link rel="manifest" href="https://www.nytimes.com/games/wordle/manifest.json">
+    <link href="https://www.nytimes.com/games/wordle/images/wordle_logo_32x32.png" rel="icon shortcut" sizes="3232">
+    <link href="https://www.nytimes.com/games/wordle/images/wordle_logo_192x192.png" rel="apple-touch-icon">
+
+    <style>
+      /* NYT Fonts */
+      @font-face {
+        font-family: 'nyt-karnakcondensed';
+        src: url('./fonts/karnakcondensed-normal-700.woff2') format('woff2'),
+          url('./fonts/karnakcondensed-normal-700.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'nyt-franklin';
+        src: url('./fonts/franklin-normal-500.woff2') format('woff2'),
+          url('./fonts/franklin-normal-500.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'nyt-franklin-700';
+        src: url('./fonts/franklin-normal-700.woff2') format('woff2'),
+          url('./fonts/franklin-normal-700.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      /* Global Styles & Colors */
+      :root {
+        --green: #6aaa64;
+        --darkendGreen: #538d4e;
+        --yellow: #c9b458;
+        --darkendYellow: #b59f3b;
+        --lightGray: #d8d8d8;
+        --gray: #86888a;
+        --darkGray: #939598;
+        --white: #fff;
+        --black: #212121;
+        /* Colorblind colors */
+        --orange: #f5793a;
+        --blue: #85c0f9;
+        font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        --header-height: 50px;
+        --keyboard-height: 200px;
+        --game-max-width: 500px;
+
+        /* icons */
+        --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized.svg');
+        --daily: url('./images/nav-icons/Crossword-Icon-Normalized.svg');
+        --mini: url('./images/nav-icons/Mini-Icon-Normalized.svg');
+        --tiles: url('./images/nav-icons/Tiles-Icon-Normalized.svg');
+        --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized.svg');
+        --vertex: url('./images/nav-icons/Vertex-Icon-Normalized.svg');
+        --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized.svg');
+      }
+
+      /* Light theme colors */
+      :root {
+        --color-tone-1: #000000;
+        --color-tone-2: #787c7e;
+        --color-tone-3: #878a8c;
+        --color-tone-4: #d3d6da;
+        --color-tone-5: #edeff1;
+        --color-tone-6: #f6f7f8;
+        --color-tone-7: #ffffff;
+        --color-nav-hover: #f4f4f4;
+        --opacity-50: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Dark Theme Colors */
+      .nightmode {
+        --color-tone-1: #ffffff;
+        --color-tone-2: #818384;
+        --color-tone-3: #565758;
+        --color-tone-4: #3a3a3c;
+        --color-tone-5: #272729;
+        --color-tone-6: #1a1a1b;
+        --color-tone-7: #121213;
+        --color-nav-hover: #2f2f31;
+        --opacity-50: rgba(0, 0, 0, 0.5);
+
+        /* dark mode icons */
+        --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized-Color.svg');
+        --daily: url('./images/nav-icons/Crossword-Icon-Normalized-Color.svg');
+        --mini: url('./images/nav-icons/Mini-Icon-Normalized-Color.svg');
+        --tiles: url('./images/nav-icons/Tiles-Icon-Normalized-Color.svg');
+        --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized-Color.svg');
+        --vertex: url('./images/nav-icons/Vertex-Icon-Normalized-Color.svg');
+        --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized-Color.svg');
+      }
+      /* Constant colors and colors derived from theme */
+      :root,
+      .nightmode {
+        --color-background: var(--color-tone-7);
+      }
+      :root {
+        --color-present: var(--yellow);
+        --color-correct: var(--green);
+        --color-absent: var(--color-tone-2);
+        --tile-text-color: var(--color-tone-7);
+        --key-text-color: var(--color-tone-1);
+        --key-evaluated-text-color: var(--color-tone-7);
+        --key-bg: var(--color-tone-4);
+        --key-bg-present: var(--color-present);
+        --key-bg-correct: var(--color-correct);
+        --key-bg-absent: var(--color-absent);
+        --modal-content-bg: var(--color-tone-7);
+      }
+      .nightmode {
+        --color-present: var(--darkendYellow);
+        --color-correct: var(--darkendGreen);
+        --color-absent: var(--color-tone-4);
+        --tile-text-color: var(--color-tone-1);
+        --key-text-color: var(--color-tone-1);
+        --key-evaluated-text-color: var(--color-tone-1);
+        --key-bg: var(--color-tone-2);
+        --key-bg-present: var(--color-present);
+        --key-bg-correct: var(--color-correct);
+        --key-bg-absent: var(--color-absent);
+        --modal-content-bg: var(--color-tone-7);
+      }
+      .colorblind {
+        --color-correct: var(--orange);
+        --color-present: var(--blue);
+        --tile-text-color: var(--white);
+        --key-bg-present: var(--color-present);
+        --key-bg-correct: var(--color-correct);
+        --key-bg-absent: var(--color-absent);
+      }
+
+      html {
+        height: 100%;
+      }
+      body {
+        height: 100%;
+        background-color: var(--color-background);
+        margin: 0;
+        padding: 0;
+        /* Prevent scrollbar appearing on page transition */
+        overflow-y: hidden;
+      }
+      .nav-item {
+        background-color: var(--color-nav-hover);
+      }
+      p.banner-text {
+        font-family: 'nyt-franklin' !important;
+      }
+      #pz-gdpr {
+        font-family: 'nyt-franklin-700' !important;
+      }
+    </style>
+  <link rel="stylesheet" type="text/css" href="./Wordle - The New York Times_files/style-2bdbffb0210cc2e386f1.css" id="iterate-style"><style data-emotion="iterateprovider"></style></head>
+  <body class="" data-new-gr-c-s-check-loaded="14.1007.0" data-gr-ext-installed="">
+    <script type="text/javascript" async="" id="iterate-script" src="./Wordle - The New York Times_files/sdk-prod-1d3c7a55760b4dff36c9.js.download"></script><script id="iterate-js" async="" src="./Wordle - The New York Times_files/loader.js.download"></script><script async="" src="./Wordle - The New York Times_files/tags.js.download"></script><script async="" src="./Wordle - The New York Times_files/gtm.js.download"></script><script>
+      (function () {
+        // Defining the hash before the main bundle allows the bundle access window.hash
+        window.wordle = window.wordle || {};
+        window.wordle.hash = 'bd4cb59c';
+      })();
+    </script>
+    <script src="./Wordle - The New York Times_files/main.bd4cb59c.js.download"></script>
+    <script defer="" type="text/javascript" src="./Wordle - The New York Times_files/cookie-notice-v2.1.2.min.js.download"></script>
+    <game-app></game-app>
+  
+
+<script type="text/javascript" id="">(function(){var c=window.nytAnalytics=window.nytAnalytics||{},h=function(a){return 10>a?"0"+a:a},m="Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" "),n="January February March April May June July August September October November December".split(" ");c.formattedDates=c.formattedDates||{};c.formatDates=function(a,b){var d=this.formattedDates;if(!a||!b)return"";if("undefined"===typeof d[a]){var e=new Date(a);if("Invalid Date"==e)return"";var l=e,p=l.setTime;var f=e;var k=-5;if(10>
+f.getUTCMonth()&&2<f.getUTCMonth())k=-4;else if(2===f.getUTCMonth()){var g=new Date(f.getUTCFullYear(),2,8,-5);g=0===g.getUTCDay()?8:15-g.getUTCDay();if(f.getUTCDate()>g||f.getUTCDate()===g&&6<f.getUTCHours())k=-4}else 10===f.getUTCMonth()&&(f.getUTCFullYear(),g=0===g.getUTCDay()?1:8-g.getUTCDay(),f.getUTCDate()<g||f.getUTCDate()===g&&7>f.getUTCHours())&&(k=-4);f=k;p.call(l,a+36E5*f);d[a]={year:e.getUTCFullYear(),date:[e.getUTCFullYear(),h(e.getUTCMonth()+1),h(e.getUTCDate()),h(e.getUTCHours())].join("-"),
+dateAlone:[e.getUTCFullYear(),h(e.getUTCMonth()+1),h(e.getUTCDate())].join("-"),day:m[e.getUTCDay()],hours:h(e.getUTCHours()),month:n[e.getUTCMonth()]}}return d[a][b]};c.resetPage=function(){this.currQuartile=this.maxQuartile=0;this.scrollComplete=this.scrollStart=!1;this.activeTime=0;this.maxViewport={}};c.resetPage();c.hitQuartile=function(a){var b=this.getData("viewport.documentHeight")||document.getElementById("app").clientHeight;b/=4;this.currQuartile=25*Math.floor(a/b);return this.currQuartile>
+this.maxQuartile?(this.maxQuartile=this.currQuartile,!0):!1};c.getMaxViewport=function(a){var b=this.maxViewport;if(!b.scrollTop||!b.height||!b.width||(a.scrollTop+a.height)*a.width>(b.scrollTop+b.height)*b.width)this.maxViewport=JSON.parse(JSON.stringify(a));return this.maxViewport};c.pagemeta=function(){var a,b={},d=document.getElementsByTagName("meta");for(a=d.length-1;0<=a;a--)b[d[a].name]=d[a].content;return b}();c.heartbeat=function(a){this.activeTime=this.activeTime||0;this.activeTime+=a.heartbeatInterval;
+(a=a.heartbeatInterval&&(3E4>=this.activeTime||12E4>=this.activeTime&&0===this.activeTime%(2*a.heartbeatInterval)||3E5>=this.activeTime&&0===this.activeTime%(4*a.heartbeatInterval)||3E5<this.activeTime&&18E5>=this.activeTime&&0===this.activeTime%(6*a.heartbeatInterval)))&&"function"==typeof nyt_et&&nyt_et("send",{subject:"page_update",activeTime:this.activeTime,gtm:google_tag_manager["GTM-P528B3"].macro(16)})};c.interaction=function(a){if("function"===typeof nyt_et){var b={subject:"interaction",gtm:google_tag_manager["GTM-P528B3"].macro(17)};
+a.eventData&&(b.eventData=a.eventData);a.module&&(b.module=a.module,"object"===typeof b.module.element&&"undefined"!==typeof b.module.element.label&&(b.module.element.label=b.module.element.label.toString()));a.card&&(b.card=JSON.parse(JSON.stringify(a.card)),"string"===typeof b.card.index&&(/^\d+$/.test(b.card.index)?b.card.index=parseInt(b.card.index,10):/\w+/.test(b.card.index)&&(b.card.index=null)));a.block&&(b.block=a.block);a.newsletter&&(b.newsletter=a.newsletter);a.ad&&(b.ad=a.ad);a["package"]&&
+(b["package"]=a["package"]);a.item&&(b.item=a.item);a.impression_id&&(b.impression_id=a.impression_id);nyt_et("send",JSON.parse(JSON.stringify(b)))}};c.performance=function(a){"function"==typeof nyt_et&&(a={subject:"page_update",performance:a.performance,gtm:google_tag_manager["GTM-P528B3"].macro(18)},c.exitPriority?(a.eventData={type:"ob_click"},nyt_et("send",a)):nyt_et(a))};c.impression=function(a,b){var d={event:"impression"},e=!1;a.module&&(d.module=JSON.parse(JSON.stringify(a.module)),e=!0);a.card&&(d.card=JSON.parse(JSON.stringify(a.card)),
+"string"===typeof d.card.index&&(/^\d+$/.test(d.card.index)?d.card.index=parseInt(d.card.index,10):/\w+/.test(d.card.index)&&(d.card.index=null)),e=!0);a.block&&(d.block=JSON.parse(JSON.stringify(a.block)),e=!0);a.eventData&&(d.eventData=JSON.parse(JSON.stringify(a.eventData)),e=!0);a.ad&&(d.ad=JSON.parse(JSON.stringify(a.ad)),e=!0);a.newsletter&&(d.newsletter=JSON.parse(JSON.stringify(a.newsletter)),e=!0);a.container&&(d.container=JSON.parse(JSON.stringify(a.container)),e=!0);a["package"]&&(d["package"]=
+JSON.parse(JSON.stringify(a["package"])),e=!0);a.item&&(d.item=JSON.parse(JSON.stringify(a.item)),e=!0);a.integration&&(d.integration=JSON.parse(JSON.stringify(a.integration)),e=!0);b&&(d.priority=!0);"function"==typeof nyt_et&&e&&(d.subject="impression",d.gtm=google_tag_manager["GTM-P528B3"].macro(19),b?nyt_et("send",d):nyt_et(d));dataLayer.push({module:void 0,card:void 0,block:void 0,eventData:void 0,ad:void 0,pageview:{ad:void 0},newsletter:void 0,container:void 0,"package":void 0,item:void 0,integration:void 0})};
+c.scrolling=function(a){a=a.viewport;var b=a.scrollTop+a.height,d=!1;a.activeTime=this.activeTime;c.scrollStart||(d=c.scrollStart=!0,dataLayer.push({event:"gaScrollEvent",eventData:{gaAction:"scroll_start"}}));c.hitQuartile(b)&&100===c.maxQuartile&&dataLayer.push({event:"gaScrollEvent",eventData:{gaAction:"page_complete"}});"function"==typeof nyt_et&&(nyt_et({subject:"page_update",viewport:a,gtm:google_tag_manager["GTM-P528B3"].macro(20)}),d&&nyt_et("send",{subject:"interaction",gtm:google_tag_manager["GTM-P528B3"].macro(21),eventData:{trigger:"module",
+type:"scroll"},module:{name:"scroll",element:{name:"first-scroll"}}}))};c.slideshow=function(a){var b={};a.slideshow&&("function"==typeof nyt_et&&(b.slideshowObj=JSON.parse(JSON.stringify(a.slideshow)),b.subject="page_update",b.gtm=google_tag_manager["GTM-P528B3"].macro(22),nyt_et("send",b)),dataLayer.push({slideshow:null}))};c.getData=function(a){return(a=google_tag_manager[google_tag_manager["GTM-P528B3"].macro(23)].dataLayer.get(a))?"object"!==typeof a?a:JSON.parse(JSON.stringify(a)):""};c.gaEvent={};c.gaEvent["see more"]={category:function(){return c.getData("presentation.pageType")+
+" - "+c.getData("interaction.type")},action:function(){return c.getData("interaction.module.context")+" - "+c.getData("interaction.module.name")},label:function(){return c.getData("interaction.module.slug")},value:function(){return""}};c.gaEvent["see more"]={category:function(){return c.getData("presentation.pageType")+" - "+c.getData("interaction.type")},action:function(){return c.getData("interaction.module.context")+" - "+c.getData("interaction.module.name")},label:function(){return c.getData("interaction.module.slug")},
+value:function(){return""}};c.gaEvent["games-prototype-spelling-bee"]={value:function(){return c.getData("interaction.module.progress.timeInGame")},label:function(){return c.getData("interaction.module.progress.guess")}}})();</script><script type="text/javascript" id="">!function(d,u){function k(){var b,a;if(a=d.crypto||d.msCrypto)a=a.getRandomValues(new Uint8Array(18));else for(a=[];18>a.length;)a.push(256*Math.random()^255&(b=b||+new Date)),b=Math.floor(b/256);return btoa(String.fromCharCode.apply(String,a)).replace(/\+/g,"-").replace(/\//g,"_")}var l,m,e,f,g,h=[],r="object"==typeof d.navigator&&"string"==typeof d.navigator.userAgent&&/iP(ad|hone|od)/.test(d.navigator.userAgent),n="object"==typeof d.navigator&&d.navigator.sendBeacon,t=n?r?"xhr_ios":"beacon":"xhr";
+if(d.nyt_et)try{console.warn("et2 snippet should only load once per page")}catch(b){}else d.nyt_et=function(){function b(a){if(h.length){var c=l+"/track",b=JSON.stringify(h);if("beacon"===t||n&&a)d.navigator.sendBeacon(c,b);else{a="undefined"!=typeof XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("Microsoft.XMLHTTP");a.open("POST",c);a.withCredentials=!0;a.setRequestHeader("Accept","*/*");"string"==typeof b?a.setRequestHeader("Content-Type","text/plain;charset\x3dUTF-8"):"[object Blob]"==={}.toString.call(b)&&
+b.type&&a.setRequestHeader("Content-Type",b.type);try{a.send(b)}catch(v){}}h.length=0;clearTimeout(g);g=null}}var a,p,c=arguments;if("string"==typeof c[0]&&/init/.test(c[0])&&(e=k(),"init"==c[0]&&!m)){if(m=k(),"string"!=typeof c[1]||!/^http/.test(c[1]))throw Error("init must include an et host url");l=String(c[1]).replace(/\/$/,"");"string"==typeof c[2]&&(f=c[2])}var q="page_exit"==(a=c[c.length-1]).subject||"ob_click"==(a.eventData||{}).type;l&&"object"==typeof a&&(p="page"==a.subject||"page_soft"==
+a.subject?e:k(),a.sourceApp&&(f=a.sourceApp),a.sourceApp=f,h.push({context_id:m,pageview_id:e,event_id:p,client_lib:"v1.0.6",sourceApp:f,how:q&&r&&n?"beacon_ios":t,client_ts:+new Date,data:JSON.parse(JSON.stringify(a))}),"send"==c[0]||p==e||q?b(q):g||(g=setTimeout(b,5500)))},d.nyt_et.get_pageview_id=function(){return e}}(window);</script>
+<script type="text/javascript" id="">nyt_et.get_pageview_id()||nyt_et("init",google_tag_manager["GTM-P528B3"].macro(24),google_tag_manager["GTM-P528B3"].macro(26),{subject:"page",canonicalUrl:(document.querySelector("link[rel\x3dcanonical]")||{}).href,articleId:(document.querySelector("meta[name\x3darticleid]")||{}).content,pubpEventId:(document.querySelector("meta[name\x3dpubp_event_id]")||{}).content,nyt_uri:(document.querySelector("meta[name\x3dnyt_uri]")||{}).content,url:location.href,referrer:"https:\/\/www.powerlanguage.co.uk\/",client_tz_offset:(new Date).getTimezoneOffset(),sourceApp:google_tag_manager["GTM-P528B3"].macro(32),
+gtm:google_tag_manager["GTM-P528B3"].macro(33),is_iframe:window.top!=window});nytAnalytics=window.nytAnalytics||{};nytAnalytics.et2_pageview_id=nyt_et.get_pageview_id();</script><script type="text/javascript" id="">(function(){if(window.nyt_et){var a={};3<parseInt(navigator.appVersion,10)&&("Microsoft Internet Explorer"===navigator.appName&&document.body?a.size=document.body.offsetWidth+"x"+document.body.offsetHeight:"Netscape"===navigator.appName&&(a.size=window.innerWidth+"x"+window.innerHeight));var b=new Date;a.timeZone=b.getTimezoneOffset()/60*-1;a.timeZoneHour=b.getHours();window.matchMedia&&(!0===window.matchMedia("(orientation: portrait)").matches?a.orientation="port":!0===window.matchMedia("(orientation: landscape)").matches&&
+(a.orientation="land"));a.language="Netscape"===navigator.appName?navigator.language:navigator.userLanguage;b="undefined"!==typeof window.ethereum||"undefined"!==typeof window.web3;nyt_et({subject:"page_update",browser:a,cryptowallet:b,nyt_uri:(document.querySelector("meta[name\x3dnyt_uri]")||{}).content,url:location.href,referrer:"https:\/\/www.powerlanguage.co.uk\/",client_tz_offset:(new Date).getTimezoneOffset(),canonicalUrl:(document.querySelector("link[rel\x3dcanonical]")||{}).href,articleId:(document.querySelector("meta[name\x3darticleid]")||
+{}).content,pubpEventId:(document.querySelector("meta[name\x3dpubp_event_id]")||{}).content,nyt_uri:(document.querySelector("meta[name\x3dnyt_uri]")||{}).content,referrer:"https:\/\/www.powerlanguage.co.uk\/",gtm:google_tag_manager["GTM-P528B3"].macro(42),is_iframe:window.top!=window})}})();</script><script type="text/javascript" id="">!function(a,b,c,d,e,f){a.ddjskey=e;a.ddoptions=f||null;a=b.createElement(c);b=b.getElementsByTagName(c)[0];a.async=1;a.src=d;b.parentNode.insertBefore(a,b)}(window,document,"script","https://dd.nytimes.com/tags.js","499AE34129FA4E4FABC31582C3075D",{endpoint:"https://dd.nytimes.com/js/"});</script><script type="text/javascript" id="">window.iterateSettings={apiKey:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55X2lkIjoiNWMwOThiM2QxNjU0YzEwMDAxMmM2OGY5IiwiaWF0IjoxNTQ0MTI5MzQxfQ.UI13nEXGs0udbZxhjyFLruAEed42XwFO4fZlCqOgY1o"};
+(function(a,d,f,g,h){function e(){b=d.createElement(f);b.id=g;b.async=1;b.src="https://platform.iteratehq.com/loader.js";k.parentNode.insertBefore(b,k)}if(!d.getElementById(g)){a.IterateObjectName=h;var c=function(){c.c(arguments)};c.q=[];c.c=function(l){c.q.push(l)};a[h]=c;var b,k=d.getElementsByTagName(f)[0];"complete"===d.readyState?e():a.attachEvent?a.attachEvent("onload",e):a.addEventListener("load",e,!1)}})(window,document,"script","iterate-js","Iterate");</script>
+<script type="text/javascript" id="">try{if(window.Iterate&&"function"===typeof Iterate){var subscriberInfo="",uType="undefined",eduSubscriber="object"===typeof subscriberInfo?subscriberInfo.eduSubscriber:"",userType="string"===typeof uType?uType:"",params={eduSubscriber:eduSubscriber,userType:userType};Iterate("identify",params)}}catch(a){console.log(a)};</script><div><div class="reset--2yoVe"></div></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
